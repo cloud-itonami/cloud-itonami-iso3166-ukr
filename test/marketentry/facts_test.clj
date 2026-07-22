@@ -22,7 +22,12 @@
     (is (nil? (facts/required-evidence-satisfied? "ATL" all)))))
 
 (deftest coverage-is-honest
-  (let [c (facts/coverage ["UKR" "USA" "ATL"])]
+  (let [c (facts/coverage ["UKR" "ATL" "ZZZ"])]
     (is (= 3 (:requested c)))
-    (is (= 2 (:covered c)))
-    (is (= ["ATL"] (:missing-jurisdictions c)))))
+    (is (= 1 (:covered c)))
+    (is (= ["UKR"] (:covered-jurisdictions c)))
+    (is (= ["ATL" "ZZZ"] (:missing-jurisdictions c)))))
+
+(deftest catalog-is-ukraine-only
+  (testing "no unlabeled foreign-jurisdiction contamination (scaffold-copy incident)"
+    (is (= #{"UKR"} (set (keys facts/catalog))))))
