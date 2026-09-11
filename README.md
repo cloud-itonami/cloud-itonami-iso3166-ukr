@@ -3,7 +3,7 @@
 **`:implemented`** for **UKR**. Flagship `ua-entity-missing`, tax `edrpou-unverified`.
 
 ```
-clojure -M:dev:test
+kbb -M:dev:test
 ```
 
 AGPL-3.0-or-later.
